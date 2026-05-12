@@ -1,53 +1,57 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
 
-const subCOlor = 'grey';
-const mainColor = 'black';
-
-const shrinkLabelStyles = css`
-  top: -14px;
-  font-size: 12px;
-  color: ${mainColor};
-`
 export const FormInputLabel = styled.label`
-  color: ${subCOlor};
-  font-size: 16px;
-  font-weight: normal;
+  color: var(--color-gray-500);
+  font-size: 0.85rem;
+  font-weight: 500;
   position: absolute;
   pointer-events: none;
-  left: 5px;
-  top: 10px;
-  transition: 300ms ease all;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 200ms ease;
+  background: var(--color-white);
+  padding: 0 4px;
 
-  ${({ shrink }) => shrink && shrinkLabelStyles}
-`
+  ${({ shrink }) => shrink && css`
+    top: 0;
+    font-size: 0.7rem;
+    color: var(--color-primary-dark);
+    font-weight: 600;
+  `};
+`;
 
 export const Input = styled.input`
-  background: none;
-  background-color: white;
-  color: ${subCOlor};
-  font-size: 18px;
-  padding: 10px 10px 10px 5px;
+  background: var(--color-white);
+  color: var(--color-black);
+  font-size: 0.95rem;
+  padding: 14px 16px;
   display: block;
   width: 100%;
-  border: none;
-  border-radius: 0;
-  border-bottom: 1px solid ${subCOlor};
-  margin: 25px 0;
+  border: 1.5px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  transition: all 200ms ease;
+  font-family: inherit;
 
   &:focus {
     outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(139, 154, 132, 0.15);
   }
 
-  &:focus ~ ${FormInputLabel} {
-    ${shrinkLabelStyles};
+  &:focus ~ label {
+    top: 0;
+    font-size: 0.7rem;
+    color: var(--color-primary-dark);
+    font-weight: 600;
   }
-`
+
+  &::placeholder {
+    color: var(--color-gray-400);
+  }
+`;
 
 export const Group = styled.div`
   position: relative;
-  margin: 45px 0;
-
-  input[type = 'password'] {
-    letter-spacing: 0.3em;
-  }
-`
+  margin: 8px 0;
+`;
