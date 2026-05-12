@@ -1,24 +1,16 @@
-import {
-  CartItemContainer,
-  ItemImage,
-  ItemDetails,
-  ItemName,
-  ItemPrice
-} from './cart-item.styles.jsx';
-
 const CartItem = ({ cartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
 
   return (
-    <CartItemContainer>
-      <ItemImage src={imageUrl} alt={name} />
-      <ItemDetails>
-        <ItemName>{name}</ItemName>
-        <ItemPrice>
+    <div className="w-full flex items-center h-20 mb-[15px]">
+      <img src={imageUrl} alt={name} className="w-[30%] border border-black p-[2px] rounded" />
+      <div className="w-[70%] flex flex-col items-start justify-center py-2.5 px-5">
+        <span className="text-sm font-semibold truncate w-full">{name}</span>
+        <span className="text-sm text-gray-500">
           {quantity} x ${price}
-        </ItemPrice>
-      </ItemDetails>
-    </CartItemContainer>
+        </span>
+      </div>
+    </div>
   );
 };
 

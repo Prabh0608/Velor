@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { CategoriesContext } from '../../context/categories.context';
 import DirectoryItem from '../directory-item/directory-item.component';
-import { DirectoryContainer } from './directory.styles.jsx';
 
 const categories = [
   {
@@ -37,11 +37,27 @@ const categories = [
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
 const Directory = () => {
   const navigate = useNavigate();
 
   return (
-    <DirectoryContainer>
+    <motion.div 
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+    >
       {categories.map((category) => (
         <DirectoryItem 
           key={category.id} 
@@ -49,7 +65,7 @@ const Directory = () => {
           onClick={() => navigate(`/shop/${category.title}`)}
         />
       ))}
-    </DirectoryContainer>
+    </motion.div>
   );
 };
 

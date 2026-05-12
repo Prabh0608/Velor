@@ -1,20 +1,19 @@
-import { useContext, Fragment } from 'react';
+import { useContext } from 'react';
 import { CategoriesContext } from '../../context/categories.context';
 import CategoryPreview from '../../components/category-preview/category-preview.component';
-import { CategoriesPreviewContainer } from './categories-preview.styles.jsx';
 
 const CategoriesPreview = () => {
   const { categoriesMap } = useContext(CategoriesContext);
 
   return (
-    <CategoriesPreviewContainer>
-      {Object.keys(categoriesMap).map((title) => {
+    <div className="flex flex-col gap-12 sm:gap-16 lg:gap-24">
+      {Object.keys(categoriesMap || {}).map((title) => {
         const products = categoriesMap[title];
         return (
           <CategoryPreview key={title} title={title} products={products} />
         );
       })}
-    </CategoriesPreviewContainer>
+    </div>
   );
 };
 
